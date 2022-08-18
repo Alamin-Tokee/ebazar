@@ -3,10 +3,12 @@ import path from "path";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import color from "colors";
+import connectDB from "./config/db";
 
 const app = express();
 
 dotenv.config();
+connectDB();
 app.use(express.json());
 
 if (process.env.NODE_ENV === "development") {
