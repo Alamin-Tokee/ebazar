@@ -3,7 +3,8 @@ import path from "path";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import color from "colors";
-import connectDB from "./config/db";
+import connectDB from "./config/db.js";
+import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.use(express.json());
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
+app.use("/api/users", userRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
